@@ -23,6 +23,7 @@ jobs:
       - name: Test a user site and a project site
         run: |
           bundle exec ruby tests/check_data.rb
+          python3 tests/check_palettes.py
           bundle exec jekyll build --destination /tmp/site-root
           python3 tests/check_site.py /tmp/site-root
           bundle exec jekyll build --baseurl /example-site --destination /tmp/site-project

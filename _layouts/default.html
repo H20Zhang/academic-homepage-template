@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' | escape }}">
+<html lang="{{ site.lang | default: 'en' | escape }}" data-palette="{{ site.appearance_palette | default: 'warm' | escape }}" data-site-base="{{ site.baseurl | escape }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,19 @@
           <a href="{{ item | relative_url }}"{% if page.url == item %} aria-current="page"{% endif %}>{{ labels[forloop.index0] }}</a>
         {% endfor %}
       </nav>
-      <button id="theme" type="button" hidden>Switch color theme</button>
+      <div class="appearance" id="appearance" hidden>
+        <label for="palette">Palette
+          <select id="palette">
+            <option value="warm">Warm Stone</option>
+            <option value="ocean">Ocean</option>
+            <option value="forest">Forest</option>
+            <option value="lilac">Lilac</option>
+            <option value="ink">Ink</option>
+            <option value="contrast">High Contrast</option>
+          </select>
+        </label>
+        <button id="theme" type="button">Switch color theme</button>
+      </div>
     </header>
     <main id="main" tabindex="-1">
       {{ content }}

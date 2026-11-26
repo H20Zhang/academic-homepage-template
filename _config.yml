@@ -1,6 +1,7 @@
 title: Academic Homepage
 description: A fictional academic profile and a starting point for your own site.
 lang: en
+appearance_palette: warm # warm, ocean, forest, lilac, ink, or contrast
 url: ""
 baseurl: ""
 exclude:

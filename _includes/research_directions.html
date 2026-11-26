@@ -9,7 +9,7 @@
           <li><a href="{{ '/publications/' | relative_url }}#{{ paper.key | escape }}">{{ paper.label | escape }}</a></li>
         {% endfor %}
       </ul>
-      <a class="all-papers" href="{{ '/publications/' | relative_url }}#{{ area.id | escape }}">All {{ area.papers.size }} papers →</a>
+      <a class="all-papers" href="{{ '/publications/' | relative_url }}#{{ area.id | escape }}">{% if area.papers.size == 1 %}View paper{% else %}All {{ area.papers.size }} papers{% endif %} →</a>
     </article>
   {% endfor %}
 </div>
