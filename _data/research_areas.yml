@@ -1,0 +1,19 @@
+- id: reproducibility
+  title: Reproducible Systems
+  question: How can software make experimental results easier to verify?
+  keywords: Provenance · Evaluation · Reproducibility
+  highlights:
+    - key: example-replay
+      label: Experiment Replay
+  papers:
+    - example-replay
+    - example-provenance
+- id: data-systems
+  title: Data Systems
+  question: How can interactive tools make large collections easier to explore?
+  keywords: Query processing · Interfaces · Indexes
+  highlights:
+    - key: example-catalog
+      label: Dataset Catalogs
+  papers:
+    - example-catalog

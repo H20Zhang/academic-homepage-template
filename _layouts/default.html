@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' | escape }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.data.profile.name | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="rail">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.data.profile.name | escape }}</a>
+      <span class="role">{{ site.data.profile.role | escape }}</span>
+      <nav aria-label="Primary">
+        {% assign destinations = '/,/publications/,/projects/' | split: ',' %}
+        {% assign labels = 'Home,Publications,Projects' | split: ',' %}
+        {% for item in destinations %}
+          <a href="{{ item | relative_url }}"{% if page.url == item %} aria-current="page"{% endif %}>{{ labels[forloop.index0] }}</a>
+        {% endfor %}
+      </nav>
+      <button id="theme" type="button" hidden>Switch color theme</button>
+    </header>
+    <main id="main" tabindex="-1">
+      {{ content }}
+      <footer>Built with <a href="https://jekyllrb.com/">Jekyll</a>. Design derived from <a href="https://github.com/alshedivat/al-folio">al-folio</a>.</footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    env:
+      JEKYLL_ENV: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Test a user site and a project site
+        run: |
+          bundle exec ruby tests/check_data.rb
+          bundle exec jekyll build --destination /tmp/site-root
+          python3 tests/check_site.py /tmp/site-root
+          bundle exec jekyll build --baseurl /example-site --destination /tmp/site-project
+          python3 tests/check_site.py /tmp/site-project /example-site
+
+  publish:
+    needs: verify
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      JEKYLL_ENV: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: actions/configure-pages@v5
+        id: pages
+      - name: Build for the configured URL
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          bundle exec jekyll build --baseurl "$BASE_PATH"
+          python3 tests/check_site.py _site "$BASE_PATH"
+      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/deploy-pages@v4
+        id: deploy

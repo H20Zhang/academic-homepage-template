@@ -1,0 +1,14 @@
+---
+layout: default
+title: Publications
+permalink: /publications/
+---
+<h1>Publications</h1>
+<p>Papers are grouped using the same research directions as the homepage.</p>
+{% for area in site.data.research_areas %}
+  <section aria-labelledby="{{ area.id | escape }}">
+    <h2 id="{{ area.id | escape }}">{{ area.title | escape }}</h2>
+    {% capture query %}@*[{% for key in area.papers %}{% unless forloop.first %} || {% endunless %}key={{ key }}{% endfor %}]{% endcapture %}
+    {% if area.papers.size > 0 %}{% bibliography --query {{ query }} %}{% else %}<p>No papers listed yet.</p>{% endif %}
+  </section>
+{% endfor %}

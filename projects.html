@@ -1,0 +1,17 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+<h1>Projects</h1>
+<p>Example projects show how figures and papers fit into the layout.</p>
+{% for project in site.data.projects %}
+  <section class="project">
+    <h2>{{ project.title | escape }}</h2>
+    {% if project.image %}
+      <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt | escape }}" width="720" height="260" loading="lazy">
+    {% endif %}
+    <p>{{ project.description | escape }}</p>
+    {% if project.paper %}<a href="{{ '/publications/' | relative_url }}#{{ project.paper | escape }}">Related paper</a>{% endif %}
+  </section>
+{% endfor %}

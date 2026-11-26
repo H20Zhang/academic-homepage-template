@@ -1,0 +1,5 @@
+---
+---
+{{ reference }}
+{% if entry.url %} <a href="{{ entry.url | escape }}">Paper</a>{% endif %}
+{% if entry.doi %} <a href="https://doi.org/{{ entry.doi | escape }}">DOI</a>{% endif %}

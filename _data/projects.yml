@@ -1,0 +1,8 @@
+- title: Experiment Replay
+  description: A fictional tool that records inputs, settings, and results so an experiment can be reviewed later.
+  image: /assets/img/replay.svg
+  image_alt: Three connected boxes labeled Inputs, Run, and Results
+  paper: example-replay
+- title: Dataset Catalogs
+  description: A fictional interface for finding and comparing research datasets.
+  paper: example-catalog

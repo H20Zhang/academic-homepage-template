@@ -1,0 +1,13 @@
+name: Alex Example
+native_name: ""
+role: Researcher · Example University
+tagline: Building systems people can understand.
+bio: >
+  I study how data systems can make complex research easier to reproduce.
+  This profile and the work listed on this site are fictional.
+portrait: /assets/img/avatar.svg
+portrait_alt: Abstract illustration of a person
+contact: ""
+links: []
+# - label: GitHub
+#   url: https://github.com/YOUR-USERNAME

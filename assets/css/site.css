@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light;
+  --paper: #faf7f2; --card: #fffdfa; --rail: #f2ece4; --ink: #332a24;
+  --muted: #62564c; --accent: #814e36; --line: #dbd0c3; --tint: #eee4d9;
+  --rail-width: 13.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #201b18; --card: #28211d; --rail: #261e19; --ink: #f0e8de;
+    --muted: #c4b4a5; --accent: #f0b998; --line: #534239; --tint: #3a2a22;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #201b18; --card: #28211d; --rail: #261e19; --ink: #f0e8de;
+  --muted: #c4b4a5; --accent: #f0b998; --line: #534239; --tint: #3a2a22;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 1rem/1.65 system-ui, -apple-system, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: .14em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+p, li, h1, h2, h3, .brand { overflow-wrap: anywhere; }
+h1, h2, h3, .tagline {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 500; line-height: 1.14;
+}
+h1 { font-size: clamp(2.1rem, 4.7vw, 4.15rem); letter-spacing: -.045em; margin: 0 0 .55rem; }
+h2 { font-size: clamp(1.65rem, 3.2vw, 2.2rem); margin: 0 0 1rem; }
+h3 { font-size: 1.35rem; margin: 0 0 .55rem; }
+.skip {
+  position: absolute; transform: translateY(-160%); z-index: 2;
+  left: .6rem; top: .6rem; background: var(--card); padding: .5rem;
+}
+.skip:focus { transform: none; }
+.rail { background: var(--rail); border-bottom: 1px solid var(--line); padding: .9rem 1.05rem; }
+.brand { display: block; color: var(--ink); text-decoration: none; font-weight: 650; }
+.role, .keywords, time, footer { color: var(--muted); }
+.rail .role { display: block; font-size: .8rem; }
+.rail nav { display: flex; flex-wrap: wrap; gap: .15rem .25rem; margin: .65rem 0 .25rem; }
+.rail nav a, #theme {
+  display: inline-flex; align-items: center; min-height: 2.35rem;
+  padding: .3rem .58rem; border-radius: .35rem; color: var(--ink); text-decoration: none; font-size: .88rem;
+}
+.rail nav a:hover, .rail nav a[aria-current="page"] { background: var(--tint); }
+.rail nav a[aria-current="page"] { box-shadow: inset 2px 0 var(--accent); font-weight: 650; }
+#theme { border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+[hidden] { display: none !important; }
+main { max-width: 69rem; margin: 0 auto; padding: clamp(1.15rem, 4vw, 3.25rem); }
+section + section { margin-top: 2.4rem; }
+.about-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.05rem 1.55rem; }
+.hero-copy > .role { margin: 0 0 1rem; }
+.tagline { color: var(--accent); font-size: clamp(1.28rem, 2.7vw, 1.7rem); margin: 0 0 .65rem; }
+.hero-copy > p:last-child { margin-bottom: 0; }
+.native-name { font: .56em/1.08 system-ui, sans-serif; color: var(--muted); }
+.portrait {
+  display: block; width: min(45%, 10rem); height: auto; aspect-ratio: 1;
+  order: -1; border-radius: .55rem; box-shadow: .4rem .4rem var(--tint); object-fit: cover;
+}
+.contact { grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); border-radius: .5rem; padding: .7rem .9rem; }
+.about-research-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+.about-research-area, .project { border: 1px solid var(--line); border-radius: .55rem; background: var(--card); padding: 1.1rem; }
+.about-research-area > p { margin: .45rem 0; }
+.keywords { font-size: .85rem; }
+.paper-links, .news { margin: .6rem 0; padding: 0; list-style: none; }
+.paper-links { display: flex; flex-wrap: wrap; gap: .45rem .9rem; }
+.all-papers { display: inline-block; margin-top: .4rem; font-size: .87rem; }
+.news li { display: grid; grid-template-columns: minmax(0, 6rem) minmax(0, 1fr); gap: .6rem; border-top: 1px solid var(--line); padding: .75rem .04rem; }
+.project { margin-top: 1rem; }
+.project img { width: 100%; max-width: 42rem; height: auto; }
+.bibliography { padding-left: 1.25rem; }
+.bibliography li { margin-bottom: .8rem; }
+footer { margin-top: 3rem; border-top: 1px solid var(--line); padding-top: .8rem; font-size: .85rem; }
+@media (min-width: 650px) {
+  .about-hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: center; }
+  .portrait { order: 0; width: 100%; max-width: 18rem; justify-self: end; }
+  .about-research-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .rail { position: fixed; inset: 0 auto 0 0; width: var(--rail-width); overflow: auto;
+    display: flex; flex-direction: column; border-bottom: 0; border-right: 1px solid var(--line); padding: 2.05rem 1.2rem 1.2rem; }
+  .rail nav { flex-direction: column; margin-top: 1.4rem; }
+  #theme { margin-top: auto; align-self: start; }
+  .site-shell { padding-left: var(--rail-width); }
+}

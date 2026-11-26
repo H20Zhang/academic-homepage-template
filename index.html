@@ -1,0 +1,39 @@
+---
+layout: default
+permalink: /
+---
+{% assign profile = site.data.profile %}
+<section class="about-hero" aria-labelledby="about-name">
+  <div class="hero-copy">
+    <h1 id="about-name">{{ profile.name | escape }}{% if profile.native_name and profile.native_name != '' %} <span class="native-name">{{ profile.native_name | escape }}</span>{% endif %}</h1>
+    <p class="role">{{ profile.role | escape }}</p>
+    <p class="tagline">{{ profile.tagline | escape }}</p>
+    {{ profile.bio | markdownify }}
+    {% if profile.links.size > 0 %}
+      <ul class="paper-links profile-links">
+        {% for link in profile.links %}
+          <li><a href="{{ link.url | escape }}">{{ link.label | escape }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  {% if profile.portrait and profile.portrait != '' %}
+    <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt | escape }}" width="480" height="480">
+  {% endif %}
+  {% if profile.contact and profile.contact != '' %}
+    <p class="contact">{{ profile.contact | escape }}</p>
+  {% endif %}
+</section>
+<section aria-labelledby="research">
+  <h2 id="research">Research directions</h2>
+  {% include research_directions.html %}
+</section>
+<section aria-labelledby="updates">
+  <h2 id="updates">News</h2>
+  <ul class="news">
+  {% assign entries = site.data.news | sort: 'date' | reverse %}
+  {% for entry in entries %}
+    <li><time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: '%b %Y' }}</time><span>{{ entry.text | escape }}</span></li>
+  {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,24 @@
+title: Academic Homepage
+description: A fictional academic profile and a starting point for your own site.
+lang: en
+url: ""
+baseurl: ""
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - THIRD_PARTY_NOTICES.md
+  - docs
+  - tests
+plugins:
+  - jekyll-scholar
+scholar:
+  source: ./_bibliography
+  bibliography: papers.bib
+  bibliography_template: bibliography
+  style: apa
+  locale: en
+  sort_by: year
+  order: descending
